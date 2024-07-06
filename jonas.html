@@ -1,0 +1,54 @@
+<html><head><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+    function drawCharts() {
+        drawErrorDistributionChart();
+        drawSuccessErrorChart();
+        drawRequestTimesChart();
+    }
+
+    function drawErrorDistributionChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Error', 'Count'],['302', 22],]);
+
+        var options = {
+        title: 'Error distribution'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('errorDistributionChart'));
+
+        chart.draw(data, options);
+    }
+
+    function drawSuccessErrorChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Type', 'Count'],
+        ['Successful requests', 78],
+        ['Error requests', 22]
+        ]);
+
+        var options = {
+        title: 'Successful vs Error requests'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('successErrorChart'));
+
+        chart.draw(data, options);
+    }
+
+    function drawRequestTimesChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Request Time', 'Count'],]);
+
+        var options = {
+        title: 'Request Times',
+        legend: { position: 'none' },
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('requestTimesChart'));
+
+        chart.draw(data, options);
+    }
+    </script>
+    </head><body><div id="errorDistributionChart" style="width: 900px; height: 500px;"></div><div id="successErrorChart" style="width: 900px; height: 500px;"></div><div id="requestTimesChart" style="width: 900px; height: 500px;"></div></body></html>

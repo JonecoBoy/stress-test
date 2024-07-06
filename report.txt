@@ -1,0 +1,4 @@
+Total time spent: 16.347545937s
+Total requests: 100
+Successful requests: 66
+Status code distribution:
