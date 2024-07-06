@@ -28,10 +28,17 @@ func (r *Reporter) CliReport() {
 	for _, t := range r.Context.RequestTimes {
 		total += t
 	}
-	average := total / time.Duration(len(r.Context.RequestTimes))
+	duration := time.Duration(len(r.Context.RequestTimes))
+	var average time.Duration
+	if duration == 0 {
+		average = 0
+	} else {
+		average = total / duration
+	}
+
 	fmt.Println("Total time spent:", r.Context.TotalTime)
 	fmt.Println("Total requests:", r.Context.TotalRequests)
-	//fmt.Println("Average request time spent:", average)
+	fmt.Println("Average request time spent:", average)
 	fmt.Println("Successful requests:", r.Context.SuccessfulRequests)
 	//fmt.Println("Status code distribution:")
 	//for code, count := range r.Context.StatusCodes {
@@ -194,14 +201,41 @@ func (r *Reporter) GenerateHTMLReport(filename string) error {
         var data = google.visualization.arrayToDataTable([
         ['Request Time', 'Count'],`
 
-	// Add the request times
-	requestTimes := make(map[string]int)
+	// Calculate the min and max request times
+	minRequestTime := r.Context.RequestTimes[0]
+	maxRequestTime := r.Context.RequestTimes[0]
 	for _, requestTime := range r.Context.RequestTimes {
-		rangeStr := fmt.Sprintf("%ds-%ds", int(requestTime.Seconds()), int(requestTime.Seconds())+1)
-		requestTimes[rangeStr]++
+		if requestTime < minRequestTime {
+			minRequestTime = requestTime
+		}
+		if requestTime > maxRequestTime {
+			maxRequestTime = requestTime
+		}
 	}
-	for requestTimeRange, count := range requestTimes {
-		html += fmt.Sprintf("['%s', %d],", requestTimeRange, count)
+
+	// Calculate the range of each bin
+	binRange := (maxRequestTime - minRequestTime) / 10
+
+	// Initialize the bins
+	bins := make([]int, 10)
+
+	// Categorize the request times into bins
+	for _, requestTime := range r.Context.RequestTimes {
+		binIndex := int((requestTime - minRequestTime) / binRange)
+		// Ensure that the maximum request time falls into the last bin
+		if binIndex == 10 {
+			binIndex = 9
+		}
+		bins[binIndex]++
+	}
+
+	// Add the bins to the HTML
+	for i, count := range bins {
+		if count > 0 { // Only add bins with a count greater than zero
+			rangeStart := minRequestTime + time.Duration(i)*binRange
+			rangeEnd := rangeStart + binRange
+			html += fmt.Sprintf("['%dms-%dms', %d],", int(rangeStart.Milliseconds()), int(rangeEnd.Milliseconds()), count)
+		}
 	}
 
 	html += `]);

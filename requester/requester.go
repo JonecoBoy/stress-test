@@ -5,6 +5,7 @@ import (
 	"github.com/JonecoBoy/stress-test/appContext"
 	"net/http"
 	"sync"
+	"time"
 )
 
 type Requester struct {
@@ -18,6 +19,7 @@ func NewRequester(ctx *appContext.Context) *Requester {
 }
 
 func (r *Requester) DoRequest(ctx *appContext.Context) {
+	startTime := time.Now()
 	resp, err := http.Get(r.Context.URL)
 	if err != nil {
 		if ctx.Quiet == false {
@@ -25,6 +27,11 @@ func (r *Requester) DoRequest(ctx *appContext.Context) {
 		}
 		//return
 	}
+	endTime := time.Now()
+	requestTime := endTime.Sub(startTime)
+
+	r.Context.RequestTimes = append(r.Context.RequestTimes, requestTime)
+
 	defer resp.Body.Close()
 
 	//r.Context.StatusCodes[resp.StatusCode]++
