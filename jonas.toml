@@ -1,0 +1,8 @@
+"Total time spent" = "20.594602568s"
+"Total requests" = 100
+"Average request time spent" = "1.806834226s"
+"Successful requests" = 77
+
+[["Errors Distribution"]]
+  Code = 302
+  Count = 23

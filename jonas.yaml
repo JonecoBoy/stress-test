@@ -1,0 +1,7 @@
+Total time spent: 24.747910541s
+Total requests: 100
+Average request time spent: 2.345812004s
+Successful requests: 64
+Errors Distribution:
+    - code: 302
+      count: 35
