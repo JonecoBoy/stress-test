@@ -9,7 +9,7 @@ The main command for the tool is `test`. Here's how you can use it:
 First you need to clone the project and [Build](##build) the binary:
 
 ```bash
-stresser test -u https://google.com -q -r 100 -c 10
+./stresser test -u https://google.com -q -r 100 -c 10
 ```
 or you can clone this repository and run directly from the docker image
 ```bash
