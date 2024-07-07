@@ -1,0 +1,68 @@
+<html><head><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+    function drawCharts() {
+        drawErrorDistributionChart();
+        drawSuccessErrorChart();
+        drawRequestTimesChart();
+        drawAllRequestTimesChart();
+    }
+
+    function drawErrorDistributionChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Error', 'Count'],['302', 16],['301', 4],]);
+
+        var options = {
+        title: 'Error distribution'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('errorDistributionChart'));
+
+        chart.draw(data, options);
+    }
+
+    function drawSuccessErrorChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Type', 'Count'],
+        ['Successful requests', 80],
+        ['Error requests', 20]
+        ]);
+
+        var options = {
+        title: 'Successful vs Error requests'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('successErrorChart'));
+
+        chart.draw(data, options);
+    }
+
+    function drawRequestTimesChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Request Time', 'Count'],['736ms-1463ms', 70],['2917ms-3644ms', 18],['3644ms-4371ms', 2],['6552ms-7279ms', 3],['7279ms-8006ms', 7],]);
+
+        var options = {
+        title: 'Request Times',
+        legend: { position: 'none' },
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('requestTimesChart'));
+
+        chart.draw(data, options);
+    }function drawAllRequestTimesChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Request Time');
+        data.addColumn('number', 'Time (ms)');
+        data.addColumn('number', 'Average Time (ms)');data.addRow(['Request 1', 7135, 2104.929711]);data.addRow(['Request 2', 7174, 2104.929711]);data.addRow(['Request 3', 7191, 2104.929711]);data.addRow(['Request 4', 7553, 2104.929711]);data.addRow(['Request 5', 7623, 2104.929711]);data.addRow(['Request 6', 7647, 2104.929711]);data.addRow(['Request 7', 7675, 2104.929711]);data.addRow(['Request 8', 7684, 2104.929711]);data.addRow(['Request 9', 7849, 2104.929711]);data.addRow(['Request 10', 8006, 2104.929711]);data.addRow(['Request 11', 872, 2104.929711]);data.addRow(['Request 12', 1121, 2104.929711]);data.addRow(['Request 13', 1200, 2104.929711]);data.addRow(['Request 14', 857, 2104.929711]);data.addRow(['Request 15', 859, 2104.929711]);data.addRow(['Request 16', 1021, 2104.929711]);data.addRow(['Request 17', 1128, 2104.929711]);data.addRow(['Request 18', 1137, 2104.929711]);data.addRow(['Request 19', 1230, 2104.929711]);data.addRow(['Request 20', 1149, 2104.929711]);data.addRow(['Request 21', 1226, 2104.929711]);data.addRow(['Request 22', 930, 2104.929711]);data.addRow(['Request 23', 890, 2104.929711]);data.addRow(['Request 24', 1009, 2104.929711]);data.addRow(['Request 25', 1081, 2104.929711]);data.addRow(['Request 26', 861, 2104.929711]);data.addRow(['Request 27', 1095, 2104.929711]);data.addRow(['Request 28', 1131, 2104.929711]);data.addRow(['Request 29', 888, 2104.929711]);data.addRow(['Request 30', 761, 2104.929711]);data.addRow(['Request 31', 869, 2104.929711]);data.addRow(['Request 32', 829, 2104.929711]);data.addRow(['Request 33', 799, 2104.929711]);data.addRow(['Request 34', 829, 2104.929711]);data.addRow(['Request 35', 1067, 2104.929711]);data.addRow(['Request 36', 1194, 2104.929711]);data.addRow(['Request 37', 825, 2104.929711]);data.addRow(['Request 38', 812, 2104.929711]);data.addRow(['Request 39', 818, 2104.929711]);data.addRow(['Request 40', 817, 2104.929711]);data.addRow(['Request 41', 834, 2104.929711]);data.addRow(['Request 42', 970, 2104.929711]);data.addRow(['Request 43', 852, 2104.929711]);data.addRow(['Request 44', 889, 2104.929711]);data.addRow(['Request 45', 779, 2104.929711]);data.addRow(['Request 46', 1171, 2104.929711]);data.addRow(['Request 47', 858, 2104.929711]);data.addRow(['Request 48', 829, 2104.929711]);data.addRow(['Request 49', 1159, 2104.929711]);data.addRow(['Request 50', 1124, 2104.929711]);data.addRow(['Request 51', 1089, 2104.929711]);data.addRow(['Request 52', 864, 2104.929711]);data.addRow(['Request 53', 1333, 2104.929711]);data.addRow(['Request 54', 1226, 2104.929711]);data.addRow(['Request 55', 1228, 2104.929711]);data.addRow(['Request 56', 1184, 2104.929711]);data.addRow(['Request 57', 1283, 2104.929711]);data.addRow(['Request 58', 1368, 2104.929711]);data.addRow(['Request 59', 1228, 2104.929711]);data.addRow(['Request 60', 1238, 2104.929711]);data.addRow(['Request 61', 1235, 2104.929711]);data.addRow(['Request 62', 816, 2104.929711]);data.addRow(['Request 63', 794, 2104.929711]);data.addRow(['Request 64', 837, 2104.929711]);data.addRow(['Request 65', 1114, 2104.929711]);data.addRow(['Request 66', 842, 2104.929711]);data.addRow(['Request 67', 793, 2104.929711]);data.addRow(['Request 68', 752, 2104.929711]);data.addRow(['Request 69', 762, 2104.929711]);data.addRow(['Request 70', 736, 2104.929711]);data.addRow(['Request 71', 1073, 2104.929711]);data.addRow(['Request 72', 789, 2104.929711]);data.addRow(['Request 73', 840, 2104.929711]);data.addRow(['Request 74', 795, 2104.929711]);data.addRow(['Request 75', 762, 2104.929711]);data.addRow(['Request 76', 924, 2104.929711]);data.addRow(['Request 77', 756, 2104.929711]);data.addRow(['Request 78', 811, 2104.929711]);data.addRow(['Request 79', 1097, 2104.929711]);data.addRow(['Request 80', 1280, 2104.929711]);data.addRow(['Request 81', 3195, 2104.929711]);data.addRow(['Request 82', 3264, 2104.929711]);data.addRow(['Request 83', 2975, 2104.929711]);data.addRow(['Request 84', 3644, 2104.929711]);data.addRow(['Request 85', 3005, 2104.929711]);data.addRow(['Request 86', 3703, 2104.929711]);data.addRow(['Request 87', 3448, 2104.929711]);data.addRow(['Request 88', 3149, 2104.929711]);data.addRow(['Request 89', 3178, 2104.929711]);data.addRow(['Request 90', 3238, 2104.929711]);data.addRow(['Request 91', 3031, 2104.929711]);data.addRow(['Request 92', 3197, 2104.929711]);data.addRow(['Request 93', 3589, 2104.929711]);data.addRow(['Request 94', 3176, 2104.929711]);data.addRow(['Request 95', 3416, 2104.929711]);data.addRow(['Request 96', 3470, 2104.929711]);data.addRow(['Request 97', 3552, 2104.929711]);data.addRow(['Request 98', 3840, 2104.929711]);data.addRow(['Request 99', 3104, 2104.929711]);data.addRow(['Request 100', 3113, 2104.929711]);
+        var options = {
+            title: 'All Request Times',
+            seriesType: 'bars',
+            series: {1: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('allRequestTimesChart'));
+        chart.draw(data, options);
+    }
+	</script>
+    </head><body><div id="successErrorChart" style="width: 900px; height: 500px;"></div><div id="errorDistributionChart" style="width: 900px; height: 500px;"></div><div id="requestTimesChart" style="width: 900px; height: 500px;"></div><div id="allRequestTimesChart" style="width: 900px; height: 500px;"></div></body></html>

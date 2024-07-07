@@ -1,0 +1,6 @@
+Total time spent: 23.874002984s
+Total requests: 100
+Successful requests: 80
+Error distribution:
+  302: 16
+  301: 4
