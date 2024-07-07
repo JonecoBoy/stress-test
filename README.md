@@ -46,7 +46,7 @@ docker build -t stress-test .
 You can find the latest releases of the tool in the Releases section of this repository.
 
 ## Example
-[View HTML Report](./report.html)
+[View HTML Report](https://rawcdn.githack.com/JonecoBoy/stress-test/c8f4db1b6f685c1dd02e2028e4d546ce38bdbc9d/report.html)
 
 [View TXT Report](./report.txt)
 
