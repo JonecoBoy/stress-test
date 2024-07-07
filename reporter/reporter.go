@@ -10,7 +10,6 @@ import (
 	"github.com/JonecoBoy/stress-test/appContext"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
-	"path/filepath"
 	"strings"
 	"time"
 )
@@ -189,9 +188,7 @@ func (r *Reporter) LogToFile(data string, filename string, fileType string) erro
 }
 
 func (r *Reporter) GenerateHTMLReport(filename string) error {
-	filename = filepath.Base(filename)
-	ext := filepath.Ext(filename)
-	filename = filename[0:len(filename)-len(ext)] + ".html"
+	filename = filename + ".html"
 	percentages := make([]float64, len(r.Context.RequestTimes))
 	for i, t := range r.Context.RequestTimes {
 		percentages[i] = float64(t) / float64(r.Context.TotalTime) * 100

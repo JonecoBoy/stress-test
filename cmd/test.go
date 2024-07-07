@@ -8,6 +8,7 @@ import (
 	"github.com/JonecoBoy/stress-test/appContext"
 	"github.com/JonecoBoy/stress-test/reporter"
 	"github.com/JonecoBoy/stress-test/requester"
+	"path/filepath"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -59,14 +60,18 @@ var testCmd = &cobra.Command{
 		}
 		rep.CliReport(report)
 
-		// Remove the extension from the filename and add .html
-
 		if outputPath == "" {
-			outputPath = "report-"
+			outputPath = "report"
 		}
+
+		// Remove the extension from the filename
+
+		ext := filepath.Ext(outputPath)
+		outputPath = outputPath[0 : len(outputPath)-len(ext)]
 		if addTimeStamp {
-			outputPath += time.Now().Format("2006-01-02-15-04-05")
+			outputPath += "-" + time.Now().Format("2006-01-02-15-04-05")
 		}
+		outputPath += ext
 
 		err = rep.GenerateHTMLReport(outputPath)
 		if err != nil {
