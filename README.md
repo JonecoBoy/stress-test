@@ -13,7 +13,7 @@ stresser test -u https://google.com -q -r 100 -c 10
 ```
 or you can clone this repository and run directly from the docker image
 ```bash
-docker run -it --rm joneco/stress-test test -u https://google.com -q -r 100 -c 10
+docker run -it --rm joneco/stress-test:latest test -u https://google.com -q -r 100 -c 10
 ```
 
 you can also build the docker image instead of downloading from docker huband run the command from the image
@@ -51,13 +51,7 @@ You can find the latest releases of the tool in the Releases section of this rep
 [View TXT Report](./report.txt)
 
 ## FAQ
-- If you are using with docker run, it won't have direct access to the file system, so it wont save the html and file reports. So you should run: 
-    ```bash
-    docker run -it --rm -v $(pwd):/home/arch/Downloads/ joneco/stress-test test -u https://google.com -q -r 100 -c 10 -o /home/arch/Downloads/jonas.txt 
-  ```
-
-## FAQ
 - If you are using with docker run, it won't have direct access to the file system, so it wont save the html and file reports. So you need to build a volume, so run:
     ```bash
-    docker run -it --rm -v $(pwd):/home joneco/stress-test test -u https://google.com -q -r 100 -c 10 -e json -o /home/report.json 
+    docker run -it --rm -v $(pwd):/home joneco/stress-test:latest test -u https://google.com -q -r 100 -c 10 -e json -o /home/report.json 
   ```
